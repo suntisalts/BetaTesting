@@ -1,5 +1,5 @@
 -- Hello im the source code gurdian 
--- please leave this scource now!!
+-- please leave this source now!!
 -- Else you still can get over moonsec V3
 
 -- Basket if you read this f*uck you (;
