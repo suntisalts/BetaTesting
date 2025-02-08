@@ -1,6 +1,6 @@
 -- Hello im the source code gurdian 
 -- please leave this source now!!
--- Else you still can get over moonsec V3
+-- Else you still cant get over moonsec V3
 
 -- Basket if you read this f*uck you (;
 
