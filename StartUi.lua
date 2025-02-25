@@ -128,7 +128,9 @@ Discord.MouseButton1Click:Connect(function()
 end)
 
 Exit.MouseButton1Click:Connect(function()
+	print("Starting Weshky Autobuild...")
 	StartUi:Destroy()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/WeshkyAutoBuild.lua"))()
 end)
 
 
