@@ -1,3 +1,5 @@
+-- Open Source Because its Treash
+
 print("Holloween Candy Test")
 for _, house in workspace.Houses:GetChildren() do
     if house:FindFirstChild("Door") and house.Door:FindFirstChild("DoorInnerTouch") then
