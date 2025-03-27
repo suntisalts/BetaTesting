@@ -1,120 +1,68 @@
--- NOT MY SCRIPT!!
-local VirtualInputManager = Instance.new("VirtualInputManager")
+local runService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-local Hooks = {}
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local Virt = game:GetService("VirtualUser")
 
-local function TrueString(String)
-    if type(String) ~= "string" then
-        return false
+local afkTimer = 0
+local simulateActivityTimer = 0
+local lastActionTime = tick()
+
+local function randomMovement()
+    local rootPart = character:FindFirstChild("HumanoidRootPart")
+    if rootPart then
+        rootPart.CFrame *= CFrame.new(math.random(-1, 1), 0, math.random(-1, 1))
     end
-
-    return (string.split(String, "\0"))[1]
 end
 
-local function SortArguments(self, ...)
-    return self, {...}
+local function randomKeypress()
+  local randomKey = Enum.KeyCode[math.random(1, Enum.KeyCode:GetEnumItems())]
+  userInputService:InputBegan:Fire(player, randomKey)
 end
 
-local function hookGetSerivce(...)
-    local OldGetService; OldGetService = function(...)
-        local self, Index = ...
-        local Response = OldGetService(...)
-    
-        if type(Index) == "string" and TrueString(Index) == "VirtualInputManager" then
-            error(("'%s' is not a valid Service name"):format(TrueString(Index)))
-            return;
+local function randomMouseMovement()
+    local mouse = userInputService:GetMouse()
+    if mouse then
+        mouse:Move(math.random(-100, 100), math.random(-100, 100))
+    end
+end
+
+local function antiAfk()
+    afkTimer = afkTimer + 1
+    simulateActivityTimer = simulateActivityTimer + 1
+
+    local timeSinceLastAction = tick() - lastActionTime
+
+    if timeSinceLastAction >= 120 then
+        lastActionTime = tick()
+        local randomAction = math.random(1, 3)
+        if randomAction == 1 then
+            randomMovement()
+        elseif randomAction == 2 then
+            randomKeypress()
+        else
+            randomMouseMovement()
         end
-    
-        return Response
+    end
+
+    if afkTimer >= 1200 then
+        afkTimer = 0
+        local randomAction = math.random(1, 3)
+        if randomAction == 1 then
+            randomMovement()
+        elseif randomAction == 2 then
+            randomKeypress()
+        else
+            randomMouseMovement()
+        end
     end
 end
 
-local OldFindService = hookfunction(game.FindService, function(...)
-    local self, Index = ...
-    local Response = OldFindService(...)
+runService.Heartbeat:Connect(antiAfk)
 
-    if type(Index) == "string" and TrueString(Index) == "VirtualInputManager" then
-        return;
-    end
-
-    return Response
+local Virt = game:GetService("VirtualUser") -- just for safety, storage.
+game:GetService("Players").LocalPlayer.Idled:connect(function() 
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
-
-hookGetSerivce(game.GetService)
-hookGetSerivce(game.getService)
-hookGetSerivce(game.service)
-
-local OldNamecall; OldNamecall = hookmetamethod(game, "__namecall", function(...)
-    local self, Arguments = SortArguments(...)
-    local Method = getnamecallmethod()
-
-    if typeof(self) == "Instance" and self == game and Method:lower():match("service") and TrueString(Arguments[1]) == "VirtualInputManager" then
-        if Method == "FindService" then
-            return;
-        end
-
-        local Success, Error = pcall(function()
-            setnamecallmethod(Method)
-            game[Method](game, "VirtualFuckOff")
-        end)
-
-        if not Error:match("is not a valid member") then
-            error(Error:replace("VirtualFuckOff", "VirtualInputManager"))
-            return;
-        end
-    end
-
-    return OldNamecall(...)
-end)
-
-local OldWindow; OldWindow = hookmetamethod(UserInputService.WindowFocused, "__index", function(...)
-    local self, Index = ...
-    local Response = OldWindow(...)
-
-    if type(Response) ~= "function" and (tostring(self):find("WindowFocused") or tostring(self):find("WindowFocusReleased")) and not table.find(Hooks, Response) then
-        table.insert(Hooks, Response)
-
-        if Index:lower() == "wait" then
-            local Old2; Old2 = hookfunction(Response, function(...)
-                local self1 = ...
-
-                if self1 == self then
-                    self1 = Instance.new("BindableEvent").Event
-                end
-
-                return Old2(self1)
-            end)
-        elseif Index:lower() == "connect" then
-            local Old2; Old2 = hookfunction(Response, function(...)
-                local self1, Function = ...
-
-                if self1 == self then
-                    Function = function() return; end
-                end
-
-                return Old2(self1, Function)
-            end)
-        end
-    end
-
-    return Response
-end)
-
-for i, v in next, getconnections(UserInputService.WindowFocusReleased) do
-    v:Disable()
-end
-
-for i, v in next, getconnections(UserInputService.WindowFocused) do
-    v:Disable()
-end
-
-if not iswindowactive() and not getgenv().WindowFocused then
-    firesignal(UserInputService.WindowFocused)
-    getgenv().WindowFocused = true
-end
-
-while true do
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Unknown, false, game)
-
-    task.wait(Random.new():NextNumber(15, 120))
-end
