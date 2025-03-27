@@ -1,4 +1,4 @@
--- Open Source Because its Treash
+-- Open Source Because its Trash
 
 print("Holloween Candy Test")
 for _, house in workspace.Houses:GetChildren() do
