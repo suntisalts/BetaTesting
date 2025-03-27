@@ -2,10 +2,10 @@
 **Join my Discord: https://discord.gg/FJ7j9YrXUs**
 
 
-**Autobuild:**  loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/WeshkyAutoBuild.lua"))()
-**Autofarm:**   loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/AutofarmV1.lua"))()
-**Item Buyer:** loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/ItemBuyer.lua"))()
-**Egg Canon:**  Join My Discord For This Scripts, Discord invite Link: https://discord.gg/FJ7j9YrXUs
+**Autobuild:**  ```loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/WeshkyAutoBuild.lua"))()```
+**Autofarm:**   ```loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/AutofarmV1.lua"))()```
+**Item Buyer:** ```loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/ItemBuyer.lua"))()```
+**Egg Canon:**  ```Join My Discord For This Scripts, Discord invite Link: https://discord.gg/FJ7j9YrXUs```
 
 ![Screenshot 2025-02-25 203653](https://github.com/user-attachments/assets/fe5f53ff-1813-4111-ba0d-a022300c5e1a)
 ![Screenshot 2025-02-19 220720](https://github.com/user-attachments/assets/66817dae-58ab-4acb-834f-7407cd82db2c)
