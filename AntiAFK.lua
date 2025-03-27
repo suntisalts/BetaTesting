@@ -58,7 +58,7 @@ local function antiAfk()
     end
 end
 
-runService.Heartbeat:Connect(antiAfk)
+runService.Heartbeat:Connect(antiAfk) -- by beampacker
 
 local Virt = game:GetService("VirtualUser") -- just for safety, storage.
 game:GetService("Players").LocalPlayer.Idled:connect(function() 
