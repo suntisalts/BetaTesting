@@ -1,1 +1,1 @@
-return "FILETEST"
+return "Weshky Autofarm"
