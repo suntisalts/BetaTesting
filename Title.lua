@@ -1,1 +1,1 @@
-return "🌊 Weshky Autofarm"
+return "🌊e Weshky Autofarm"
