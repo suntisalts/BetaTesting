@@ -6,5 +6,3 @@ player.Idled:Connect(function()
     task.wait(1)
     vu:Button2Up(Vector2.new(), workspace.CurrentCamera.CFrame)
 end)
-
-print("Start Anti-Afk")
