@@ -1,5 +1,5 @@
 # **Weshky  Scripts:** 
-**Join my Discord: https://discord.gg/FJ7j9YrXUs**
+**Join my Discord: https://discord.gg/GgVf3ykUu8**
 
 
 **Autobuild:**  ```loadstring(game:HttpGet("https://raw.githubusercontent.com/suntisalts/BetaTesting/refs/heads/main/WeshkyAutoBuild.lua"))()```            
